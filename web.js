@@ -6,7 +6,7 @@ var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
 
-  exec('./bin/phantomjs/bin/phantomjs phantomjs rasterize.js ./tmp/test.jpg http://www.google.com 200x200', function (error, stdout, stderr) {
+  exec('./bin/phantomjs/bin/phantomjs rasterize.js ./tmp/test.jpg http://www.google.com 200x200', function (error, stdout, stderr) {
 
     if(error) {
       response.send('Version: ' + stdout + '<br />Error: ' + error);
