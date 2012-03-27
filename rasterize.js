@@ -1,8 +1,10 @@
 var page = require('webpage').create()
   , url = phantom.args[0]
-  , size = phantom.args[1] || '';
+  , path = phantom.args[1]
+  , size = phantom.args[2] || '';
 
 if (!url) throw new Error('url required');
+if (!path) throw new Error('output path required');
 
 size = size.split('x');
 
@@ -12,17 +14,10 @@ page.viewportSize = {
 };
 
 page.open(url, function (status) {
-
   if (status == 'success') {
-    path = './tmp/temp.jpg';
-
     page.render(path);
-    console.log(path);
-
     phantom.exit();
   } else {
     throw new Error('failed to load ' + url);
   }
 });
-
-// phantomjs rasterize.js http://www.google.com 200x200

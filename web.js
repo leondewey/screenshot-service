@@ -5,12 +5,12 @@ var exec = require('child_process').exec;
 var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
-  // bin/phantomjs --version
-  exec('./bin/phantomjs/bin/phantomjs --version', function (error, stdout, stderr) {
-    response.send('Version: ' + stdout + '<br />Error: ' + error);
-    if (error !== null) {
-      console.log('exec error: ' + error);
-    }
+
+  exec('./bin/phantomjs/bin/phantomjs phantomjs rasterize.js ./tmp/test http://www.google.com 200x200', function (error, stdout, stderr) {
+
+    //response.send('Version: ' + stdout + '<br />Error: ' + error);
+    response.sendfile('./tmp/test');
+
   });
 });
 
