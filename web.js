@@ -6,7 +6,7 @@ var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
 
-  exec('./bin/phantomjs/bin/phantomjs rasterize.js ./tmp/test.jpg http://www.google.com 200x200', function (error, stdout, stderr) {
+  exec('./bin/phantomjs/bin/phantomjs rasterize.js http://www.google.com ./tmp/test.jpg 200x200', function (error, stdout, stderr) {
 
     if(error) {
       response.send('Version: ' + stdout + '<br />Error: ' + error);
@@ -14,7 +14,7 @@ app.get('/', function(request, response) {
       response.sendfile('./tmp/test.jpg');
     }
     //response.send('Version: ' + stdout + '<br />Error: ' + error);
-
+    //phantomjs rasterize.js http://www.google.com ./tmp/test.jpg 200x200
 
   });
 });
