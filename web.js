@@ -6,16 +6,15 @@ var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
 
-  exec('./bin/phantomjs/bin/phantomjs rasterize.js http://www.google.com ./tmp/test.jpg 200x200', function (error, stdout, stderr) {
+  var url = 'http://google.com';
+  var path = new Number(Math.random() * 100000000000).toFixed(0) + '.jpg';
+  var size = '800x600';
 
-    if(error) {
-      response.send('Version: ' + stdout + '<br />Error: ' + error);
-    } else {
-      response.sendfile('./tmp/test.jpg');
-    }
-    //response.send('Version: ' + stdout + '<br />Error: ' + error);
-    //phantomjs rasterize.js http://www.google.com ./tmp/test.jpg 200x200
+  var to_exec = './bin/phantomjs/bin/phantomjs rasterize.js '+ url +' '+ path + ' ' + size;
 
+  exec(to_exec, function (error, stdout, stderr) {
+    if(error) response.send(error);
+    else response.sendfile(path);
   });
 });
 
