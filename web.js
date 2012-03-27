@@ -8,8 +8,13 @@ app.get('/', function(request, response) {
 
   exec('./bin/phantomjs/bin/phantomjs phantomjs rasterize.js ./tmp/test.jpg http://www.google.com 200x200', function (error, stdout, stderr) {
 
+    if(error) {
+      response.send('Version: ' + stdout + '<br />Error: ' + error);
+    } else {
+      response.sendfile('./tmp/test.jpg');
+    }
     //response.send('Version: ' + stdout + '<br />Error: ' + error);
-    response.sendfile('./tmp/test.jpg');
+
 
   });
 });
