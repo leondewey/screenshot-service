@@ -6,7 +6,7 @@ var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
   // bin/phantomjs --version
-  exec('./bin/phantom/bin/phantomjs --version', function (error, stdout, stderr) {
+  exec('./bin/phantomjs/bin/phantomjs --version', function (error, stdout, stderr) {
     response.send('Version: ' + stdout + '<br />Error: ' + error);
     if (error !== null) {
       console.log('exec error: ' + error);
