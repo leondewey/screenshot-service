@@ -1,0 +1,7 @@
+heroku destroy
+rm -fr .git
+git init
+git add .
+git commit -m "init"
+heroku create --stack cedar --buildpack http://github.com/denisjacquemin/heroku-buildpack-nodejs-phantomjs.git
+git push heroku master
