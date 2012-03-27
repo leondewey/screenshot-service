@@ -6,10 +6,10 @@ var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
 
-  exec('./bin/phantomjs/bin/phantomjs phantomjs rasterize.js ./tmp/test http://www.google.com 200x200', function (error, stdout, stderr) {
+  exec('./bin/phantomjs/bin/phantomjs phantomjs rasterize.js ./tmp/test.jpg http://www.google.com 200x200', function (error, stdout, stderr) {
 
     //response.send('Version: ' + stdout + '<br />Error: ' + error);
-    response.sendfile('./tmp/test');
+    response.sendfile('./tmp/test.jpg');
 
   });
 });
