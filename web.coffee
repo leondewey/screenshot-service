@@ -4,7 +4,7 @@ exec = require("child_process").exec
 app = express.createServer(express.logger())
 
 app.get "/", (request, response) ->
-  response.send "Hi"
+  response.send "Try: <a href=\"/key/12356789/http://codeascraft.etsy.com/2011/06/06/optimizing-for-developer-happiness\">/key/12356789/http://codeascraft.etsy.com/2011/06/06/optimizing-for-developer-happiness</a>"
 
 app.get /key\/(.*)\/(((https?)|(ftp)):\/\/([\-\w]+\.)+\w{2,3}(\/[%\-\w]+(\.\w{2,})?)*(([\w\-\.\?\\/+@&#;`~=%!]*)(\.\w{2,})?)*\/?)/, (request, response) ->
 
@@ -22,3 +22,5 @@ app.get /key\/(.*)\/(((https?)|(ftp)):\/\/([\-\w]+\.)+\w{2,3}(\/[%\-\w]+(\.\w{2,
 port = process.env.PORT or 3000
 app.listen port, ->
   console.log "Listening on " + port
+
+# http://stormy-rain-7874.herokuapp.com/key/12356789/http://codeascraft.etsy.com/2011/06/06/optimizing-for-developer-happiness
