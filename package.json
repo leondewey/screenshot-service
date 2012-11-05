@@ -2,7 +2,7 @@
   "name": "screenshot",
   "version": "0.0.1",
   "engines": {
-    "node": ">=0.4.7 <0.7.0",
+    "node": ">=0.4.7",
     "npm": ">=1.0.0"
   },
   "dependencies": {
