@@ -29,8 +29,7 @@ class Screenshot
     return opts.error 'Invalid URL' unless validator.check(@url).isUrl()
 
     path = "./tmp/#{new Number(Math.random() * 10000000000000).toFixed(0)}.jpg"
-    to_exec = if process.env.PORT then "./bin/phantomjs/bin/phantomjs" else "phantomjs"
-    to_exec = "phantomjs"
+    to_exec = "./bin/phantomjs/bin/phantomjs/phantomjs"
     to_exec = "#{to_exec} rasterize.js #{@url} #{path} #{@size}"
     exec to_exec, (error, stdout, stderr) =>
       if error then opts.error stderr else opts.success path
