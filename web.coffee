@@ -8,6 +8,8 @@ validator = new v()
 validator.error = (msg) -> false
 
 app.get '/', (request, response) ->
+  response.send 'Invalid URL' unless request.query.url
+
   screenshot = new Screenshot request.query.url, request.query.size
   screenshot.generate
     success: (path) -> response.sendfile path
@@ -22,7 +24,7 @@ app.listen port, -> console.log "Listening on #{port}"
 class Screenshot
 
   constructor: (url, size) ->
-    @url = require('url').parse(url).href
+    @url = "http://#{require('url').parse(url).href.replace 'http://', ''}"
     @size = size || "1024x600"
 
   generate: (opts) ->
@@ -30,6 +32,7 @@ class Screenshot
 
     path = "./tmp/#{new Number(Math.random() * 10000000000000).toFixed(0)}.jpg"
     to_exec = "./bin/phantomjs/bin/phantomjs"
+    #to_exec = "phantomjs"
     to_exec = "#{to_exec} rasterize.js #{@url} #{path} #{@size}"
     exec to_exec, (error, stdout, stderr) =>
       if error then opts.error stderr else opts.success path
